@@ -1,0 +1,10 @@
+apply from: "${rootDir}/gradle/publish.gradle"
+
+dependencies {
+    compile 'com.google.protobuf:protobuf-java:3.10.0'
+}
+
+javadoc {
+    exclude '**/com/google/ortools/**' // generated files
+}
+

@@ -1,0 +1,12 @@
+
+dependencies {
+    testCompile project(':or-tools')
+    testCompile files(project(':or-tools-macosx').jar.archivePath)
+    testCompile 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+}
+
+test {
+    dependsOn ':or-tools-macosx:jar'
+    useJUnitPlatform()
+}
+

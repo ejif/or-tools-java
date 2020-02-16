@@ -1,1 +1,3 @@
-include 'ortools'
+include 'or-tools'
+include 'or-tools-macosx'
+include 'or-tools-macosx-test'
