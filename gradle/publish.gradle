@@ -1,0 +1,77 @@
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+def getVersionName = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'describe', '--tags'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+group 'io.github.ejif.ortools'
+version getVersionName()
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Google OR Tools for Java'
+                description 'Java wrapper for Google OR Tools'
+                packaging 'jar'
+                url 'https://github.com/ejif/or-tools-java.git'
+
+                scm {
+                    connection 'scm:git:https://github.com/ejif/or-tools-java.git'
+                    developerConnection 'scm:git:git@github.com:ejif/or-tools-java.git'
+                    url 'https://github.com/ejif/or-tools-java.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The MIT License'
+                        url 'http://opensource.org/licenses/MIT'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'ejif'
+                        name 'Jenny Liang'
+                        email 'jnliang90@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
