@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.12.0"
+    }
+}
+
+apply plugin: 'io.codearte.nexus-staging'
+
+nexusStaging {
+    packageGroup = 'io.github.ejif'
+    username = ossrhUsername
+    password = ossrhPassword
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        jcenter()
+    }
+}
+
