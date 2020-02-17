@@ -1,6 +1,6 @@
 package io.github.ejif.ortools;
 
-public class Ortools {
+public final class Ortools {
 
     static {
         Loader.load(Ortools.class);
@@ -9,4 +9,6 @@ public class Ortools {
     public static void load() {
         // runs static initialization block
     }
+
+    private Ortools() {}
 }

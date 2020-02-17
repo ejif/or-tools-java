@@ -1,4 +1,6 @@
-# or-tools-java
+# Google OR-Tools for Java
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.ejif.ortools/or-tools/badge.svg)](https://mvnrepository.com/artifact/io.github.ejif.ortools)
 
 A wrapper around [Google OR-Tools](https://github.com/google/or-tools) for Java that works out of the box, without having to install or link anything. Just declare a dependency on the following Maven coordinates:
 
@@ -8,9 +10,9 @@ A wrapper around [Google OR-Tools](https://github.com/google/or-tools) for Java 
             <version>{version}</version>
         </dependency>
 
-Currently only the platform `macosx` is supported. For the latest version, see the [Releases](https://github.com/ejif/or-tools-java/releases) tab.
+**Currently only the platform `macosx` is supported.** See the above badge for the latest version, or check out the [Releases](https://github.com/ejif/or-tools-java/releases) tab.
 
-Now you can compile and run with any of the Java wrapper classes:
+Now you can compile and run with any of the [Java wrapper classes](https://google.github.io/or-tools/java/namespacecom_1_1google_1_1ortools_1_1sat.html):
 
         import com.google.ortools.linearsolver.MPSolver;
         import com.google.ortools.linearsolver.MPSolver.OptimizationProblemType;
